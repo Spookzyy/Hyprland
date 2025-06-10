@@ -1,1 +1,70 @@
+{
+    "margin": "5 20 0 20",
+        "modules-left": ["custom/updates", "custom/spotify", "custom/cava"],
+        "modules-center": ["clock"],
+        "modules-right": ["network","pulseaudio", "backlight", "battery", "custom/ytube", "tray", "custom/recorder"],
 
+
+        //***************************
+        //*  Modules configuration  *
+        //***************************
+
+
+        "custom/updates": {
+            "format": "   ",
+            "interval": 7200,     
+            "on-click": "rofi -show drun	", 
+            "signal": 8
+        },
+
+		"custom/spotify": {
+		  "format": "  {}",
+		  "interval": 5,
+		  "on-click": "flatpak run com.spotify.Client",
+		  "exec": "~/.config/waybar/scripts/spotify.sh"
+		},
+
+        "clock": {
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "format": "{:%a | %d %b | %I:%M %p}"
+        },
+
+		"custom/cava": {
+				"format": "{}",
+				"exec": "~/.config/waybar/scripts/cava.sh"
+			},
+
+			  "network": {
+		  "format-wifi": "󰤨  {essid} ({signalStrength}%)",
+		  "format-ethernet": "󰈁 Ethernet",
+		  "format-disconnected": "󰤭 Disconnected",
+		  "on-click": "~/.config/waybar/scripts/nmtui.sh"
+		},
+
+        "pulseaudio": {
+            "reverse-scrolling": 1,
+            "format": "{volume}% {icon}",
+            "format-bluetooth": "{volume}% {icon}",
+            "format-muted": " {format_source}",
+            "format-source-muted": "Mute 🚫",
+            "format-icons": {
+                "headphone": "",
+                "default": ["🕨", "🕩", "🕪"]
+            },
+            "on-click": "pavucontrol",
+            "min-length": 13,
+        },
+
+        "backlight": {
+            "device": "intel_backlight",
+            "format": "{percent}% {icon}",
+            "format-icons": ["🌑","🌒","🌓","🌔", "🌕"],
+            "min-length": 5,
+        },
+
+
+        "tray": {
+            "icon-size": 16,
+            "spacing": 4
+        },
+}
