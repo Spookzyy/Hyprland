@@ -1,1 +1,45 @@
 
+
+read -p "this scipt will install Oh My Zsh and The PowerLevel10k Theme on Bazzite ONLY Are you sure you want to continue? y/n : " -n 1 -r
+echo    # (optional) move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+fi
+
+##Check which shells can be installed to the terminal
+
+cat /etc/shells 
+
+##Install ZSH
+
+sudo pacman -S zsh
+
+#Change shell to ZSH
+
+sudo usermod --shell /usr/bin/zsh ${USER}
+
+## Install Oh-My-Zsh
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+## Install Powerlevel10k Theme and add it to ~/.zshrc 
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+
+## Say install is finshed. if errors are shown to contact me.
+
+read -p "this scipt has now finished. if any errors are shown please contact me. Would you like to exit? y/n : " -n 1 -r
+echo    # (optional) move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+fi
+
+##now exit the installer
+
+clear
+
+exit
+
